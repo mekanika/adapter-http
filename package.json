@@ -1,0 +1,27 @@
+{
+  "name": "mekanika-adapter-rest",
+  "version": "0.0.0",
+  "description": "Mekanika REST adapter",
+  "main": "lib/adapter-rest.js",
+  "scripts": {
+    "test": "make test",
+    "blanket": { "pattern":"adapter-rest/lib" }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mekanika/adapter-rest.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mekanika/adapter-rest/issues"
+  },
+  "dependencies": {
+    "mekanika-adapter": "*"
+  },
+  "devDependencies": {
+    "mocha": "~1.12.0",
+    "expect.js": "~0.2.0",
+    "jshint": "~2.1.10",
+    "blanket": "~1.1.5"
+  }
+}
