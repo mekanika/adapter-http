@@ -40,5 +40,30 @@ describe('Adapter', function () {
   });
 
 
+  describe('Action map', function () {
+
+    it('create maps to POST', function () {
+      expect( rest.exec( {action:'create'}, null, 1).method ).to.be( 'POST' );
+    });
+
+    it('find maps to GET', function () {
+      expect( rest.exec( {action:'find'}, null, 1).method ).to.be( 'GET' );
+    });
+
+    it('update maps to POST', function () {
+      expect( rest.exec( {action:'update'}, null, 1).method ).to.be( 'POST' );
+    });
+
+    it('save maps to PUT', function () {
+      expect( rest.exec( {action:'save'}, null, 1).method ).to.be( 'PUT' );
+    });
+
+    it('remove maps to DELETE', function () {
+      expect( rest.exec( {action:'remove'}, null, 1).method ).to.be( 'DELETE' );
+    });
+
+  });
+
+
 });
 
