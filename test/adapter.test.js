@@ -14,6 +14,7 @@ describe('Adapter', function () {
     expect( rest.exec.length ).to.be.above( 1 );
   });
 
+
   describe('.config', function () {
 
     it('.protocol set to `http`', function () {
@@ -60,6 +61,16 @@ describe('Adapter', function () {
 
     it('remove maps to DELETE', function () {
       expect( rest.exec( {action:'remove'}, null, 1).method ).to.be( 'DELETE' );
+    });
+
+  });
+
+
+  describe('Request Agent', function () {
+
+    it('applies the config contentType header', function () {
+      var a = rest.exec( {action:'create'}, null, 1);
+      expect( a.header['Content-Type'] ).to.be( rest.config.contentType );
     });
 
   });
