@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "mekanika-adapter": "*",
+    "superagent": "0.15.7",
     "clone-component": "~0.1.0"
   },
   "devDependencies": {
