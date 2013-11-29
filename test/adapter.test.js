@@ -73,6 +73,13 @@ describe('Adapter', function () {
       expect( a.header['Content-Type'] ).to.be( rest.config.contentType );
     });
 
+    it('applies custom config headers to request', function () {
+      rest.config.headers = {'API-Key':':)'};
+      var a = rest.exec( {action:'create'}, null, 1 );
+      expect( a.header ).to.have.keys( 'API-Key' );
+      rest.config.headers = {}; // Reset headers
+    });
+
   });
 
 
