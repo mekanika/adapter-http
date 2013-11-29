@@ -14,5 +14,31 @@ describe('Adapter', function () {
     expect( rest.exec.length ).to.be.above( 1 );
   });
 
+  describe('.config', function () {
+
+    it('.protocol set to `http`', function () {
+      expect( rest.config.protocol ).to.be( 'http' );
+    });
+
+    it('.host initialises as `localhost`', function () {
+      expect( rest.config.host ).to.be( 'localhost' );
+    });
+
+    it('.contentType defaults to `application/json`', function () {
+      expect( rest.config.contentType ).to.be( 'application/json' );
+    });
+
+    it('.withCredentials defaults to `true`', function () {
+      expect( rest.config.withCredentials ).to.be( true );
+    });
+
+    it('custom .headers default to empty object', function () {
+      expect( rest.config.headers ).to.be.an( Object );
+      expect( rest.config.headers ).to.be.empty();
+    });
+
+  });
+
+
 });
 
