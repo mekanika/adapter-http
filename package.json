@@ -16,7 +16,8 @@
     "url": "https://github.com/mekanika/adapter-rest/issues"
   },
   "dependencies": {
-    "mekanika-adapter": "*"
+    "mekanika-adapter": "*",
+    "clone-component": "~0.1.0"
   },
   "devDependencies": {
     "mocha": "~1.12.0",
