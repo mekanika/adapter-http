@@ -80,6 +80,12 @@ describe('Adapter', function () {
       rest.config.headers = {}; // Reset headers
     });
 
+    it('applies parsed payload as request.body', function () {
+      var a = rest.exec( {action:'create', content:[{name:':)'}]}, null, 1 );
+      expect( a._data ).to.have.keys( 'name' )
+      expect( a._data.name ).to.be( ':)' );
+    });
+
   });
 
 
