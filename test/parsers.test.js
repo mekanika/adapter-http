@@ -13,6 +13,31 @@ var expect = require('expect.js')
 
 describe('Parsers', function () {
 
+
+  /**
+   * URL builder
+   */
+
+  describe('.url( req, cfg )', function () {
+
+    var cfg = {protocol:'http', host:'local'};
+
+    it('composes base url as protocol+host+resource', function () {
+      expect( parse.url( {resource:'users'}, cfg) ).to.be('http://local/users');
+    });
+
+    it('adds an /:id if only one identifier is present', function () {
+      var url = parse.url( {resource:'users', identifiers:[123]}, cfg );
+      expect( url ).to.be( 'http://local/users/123' );
+
+      // Two ids mean DO NOT append /:id
+      url = parse.url( {resource:'users', identifiers:[123,321]}, cfg );
+      expect( url ).to.be( 'http://local/users' );
+    });
+
+  });
+
+
   /**
    * Data payload preparation
    */
