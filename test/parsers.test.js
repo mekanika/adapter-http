@@ -108,7 +108,7 @@ describe('Parsers', function () {
 
         it('maps condition keys to config.map values', function () {
           cfg.key = 'q';
-          cfg.map.field = 'swee!'
+          cfg.map.field = 'swee!';
           pre = parse.urlQuery( q.single, cfg );
           expect( pre.q ).to.have.length( 1 );
           expect( pre.q[0] ).to.have.keys( 'swee!' );

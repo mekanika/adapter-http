@@ -97,7 +97,7 @@ describe('Adapter', function () {
 
     it('applies parsed payload as request.body', function () {
       var a = rest.exec( {action:'create', content:[{name:':)'}]}, _fn, 1 );
-      expect( a._data ).to.have.keys( 'name' )
+      expect( a._data ).to.have.keys( 'name' );
       expect( a._data.name ).to.be( ':)' );
     });
 
