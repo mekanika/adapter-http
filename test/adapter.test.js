@@ -29,6 +29,10 @@ describe('Adapter', function () {
       expect( rest.config.host ).to.be( 'localhost' );
     });
 
+    it('.port default to 80', function () {
+      expect( rest.config.port ).to.be( 80 );
+    });
+
     it('.contentType defaults to `application/json`', function () {
       expect( rest.config.contentType ).to.be( 'application/json' );
     });

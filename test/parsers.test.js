@@ -137,6 +137,13 @@ describe('Parsers', function () {
       expect( parse.url( {}, cfg ) ).to.be('http://local/');
     });
 
+    it('adds a `:$port` value if something other that `80`', function () {
+      cfg.port = 5000;
+      expect( parse.url( {}, cfg ) ).to.be('http://local:5000/');
+      // reset port
+      cfg.port = 80;
+    });
+
     it('adds an /:id if only one identifier is present', function () {
       var url = parse.url( {resource:'users', identifiers:[123]}, cfg );
       expect( url ).to.be( 'http://local/users/123' );
