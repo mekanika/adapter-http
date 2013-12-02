@@ -7,6 +7,10 @@ var expect = require('expect.js')
   , rest = require('../lib/adapter-rest');
 
 
+// Stub blank function
+var _fn = function(){};
+
+
 describe('Adapter', function () {
 
   it('implements an .exec( req, cb ) method', function () {
@@ -44,23 +48,23 @@ describe('Adapter', function () {
   describe('Action map', function () {
 
     it('create maps to POST', function () {
-      expect( rest.exec( {action:'create'}, null, 1).method ).to.be( 'POST' );
+      expect( rest.exec( {action:'create'}, _fn, 1).method ).to.be( 'POST' );
     });
 
     it('find maps to GET', function () {
-      expect( rest.exec( {action:'find'}, null, 1).method ).to.be( 'GET' );
+      expect( rest.exec( {action:'find'}, _fn, 1).method ).to.be( 'GET' );
     });
 
     it('update maps to POST', function () {
-      expect( rest.exec( {action:'update'}, null, 1).method ).to.be( 'POST' );
+      expect( rest.exec( {action:'update'}, _fn, 1).method ).to.be( 'POST' );
     });
 
     it('save maps to PUT', function () {
-      expect( rest.exec( {action:'save'}, null, 1).method ).to.be( 'PUT' );
+      expect( rest.exec( {action:'save'}, _fn, 1).method ).to.be( 'PUT' );
     });
 
     it('remove maps to DELETE', function () {
-      expect( rest.exec( {action:'remove'}, null, 1).method ).to.be( 'DELETE' );
+      expect( rest.exec( {action:'remove'}, _fn, 1).method ).to.be( 'DELETE' );
     });
 
   });
@@ -69,19 +73,20 @@ describe('Adapter', function () {
   describe('Request Agent', function () {
 
     it('applies the config contentType header', function () {
-      var a = rest.exec( {action:'create'}, null, 1);
-      expect( a.header['Content-Type'] ).to.be( rest.config.contentType );
+      var a = rest.exec( {action:'find'}, _fn, 1);
+      // Server headers are in .req
+      expect( a.req._headers['content-type'] ).to.be( rest.config.contentType );
     });
 
     it('applies custom config headers to request', function () {
       rest.config.headers = {'API-Key':':)'};
-      var a = rest.exec( {action:'create'}, null, 1 );
-      expect( a.header ).to.have.keys( 'API-Key' );
+      var a = rest.exec( {action:'create'}, _fn, 1 );
+      expect( a.req._headers ).to.have.keys( 'api-key' );
       rest.config.headers = {}; // Reset headers
     });
 
     it('applies parsed payload as request.body', function () {
-      var a = rest.exec( {action:'create', content:[{name:':)'}]}, null, 1 );
+      var a = rest.exec( {action:'create', content:[{name:':)'}]}, _fn, 1 );
       expect( a._data ).to.have.keys( 'name' )
       expect( a._data.name ).to.be( ':)' );
     });
