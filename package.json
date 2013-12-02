@@ -25,6 +25,7 @@
     "expect.js": "~0.2.0",
     "express": "~3.4.5",
     "jshint": "~2.1.10",
-    "blanket": "~1.1.5"
+    "blanket": "~1.1.5",
+    "clone-component": "~0.1.0"
   }
 }

@@ -4,6 +4,8 @@
  */
 
 var expect = require('expect.js')
+  , clone = require('clone-component')
+  , qcon = require('../lib/query.config')
   , parse = require('../lib/parsers');
 
 
@@ -12,6 +14,111 @@ var expect = require('expect.js')
  */
 
 describe('Parsers', function () {
+
+  var cfg;
+  beforeEach( function () { cfg = clone( qcon ); } );
+
+  /**
+   * URL query builder
+   */
+
+  describe('.urlQuery( req, qconf )', function () {
+
+    var q = require('./queries/query.objects');
+
+    describe('Limit and Offset', function () {
+
+      it('passes through if no .display or .constraints', function () {
+        expect( parse.urlQuery( {} ) ).to.be.empty();
+      });
+
+      it('parses limit and offset .display', function () {
+        var pre = parse.urlQuery( q.display, qcon );
+        expect( pre ).to.have.keys( 'limit', 'offset' );
+      });
+
+      it('maps limit and offset if config.query.map values set', function () {
+        cfg.map.limit = 'maxrecords';
+        cfg.map.offset = 'skip';
+
+        var pre = parse.urlQuery( q.display, cfg );
+        expect( pre ).to.have.keys( 'maxrecords', 'skip' );
+      });
+
+    });
+
+
+    describe('With Constraints', function () {
+
+      describe('Pattern', function () {
+
+        it('replaces pattern field,operator,condition', function () {
+          cfg.pattern = '"field:operator:condition"';
+          var pre = parse.urlQuery( q.many, cfg );
+          expect( pre ).to.have.keys( 'q' );
+          var cnd = JSON.parse( pre.q );
+          expect( cnd ).to.have.length( 4 );
+          expect( cnd[1] ).to.be( 'name:in:Mordecai,Rigbone' );
+        });
+
+        it('applies a default query key `q` if none set', function () {
+          cfg.pattern = '"field:operator:condition"';
+          cfg.key = '';
+          var pre = parse.urlQuery( q.many, cfg );
+          expect( pre ).to.have.keys( 'q' );
+        });
+
+        it('applies custom query key if provided', function () {
+          cfg.pattern = '"field:operator:condition"';
+          cfg.key = 'search';
+          var pre = parse.urlQuery( q.many, cfg );
+          expect( pre ).to.have.keys( 'search' );
+        });
+
+      });
+
+
+      describe('Object and no key', function () {
+
+        it('applies consolidated constraints as /?field=conditions', function () {
+          cfg.key = '';
+          var pre = parse.urlQuery( q.many, cfg );
+          expect( pre ).to.have.keys( 'age', 'name', 'cool' );
+          expect( pre.cool.split(',') ).to.have.length( 3 );
+        });
+
+        it('prefixes conditions with mapped operators', function () {
+          cfg.key = '';
+          var pre = parse.urlQuery( q.many, cfg );
+          expect( pre.cool ).to.be( '-Boo,-Smoo,-obo' );
+          expect( pre.age ).to.be( '>16' );
+        });
+
+      });
+
+
+      describe('Object with key', function () {
+
+        it('applies consolidated constraints as /?q[0][field]=...', function () {
+          cfg.key = 'q';
+          var pre = parse.urlQuery( q.many, cfg );
+          expect( pre.q ).to.have.length( 4 );
+          expect( pre.q[0] ).to.have.keys( 'key', 'op', 'cnd' );
+        });
+
+        it('maps condition keys to config.map values', function () {
+          cfg.key = 'q';
+          cfg.map.field = 'swee!'
+          pre = parse.urlQuery( q.single, cfg );
+          expect( pre.q ).to.have.length( 1 );
+          expect( pre.q[0] ).to.have.keys( 'swee!' );
+        });
+
+      });
+
+    });
+
+  });
 
 
   /**
