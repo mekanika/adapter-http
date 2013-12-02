@@ -133,6 +133,10 @@ describe('Parsers', function () {
       expect( parse.url( {resource:'users'}, cfg) ).to.be('http://local/users');
     });
 
+    it('omits resource if not defined', function () {
+      expect( parse.url( {}, cfg ) ).to.be('http://local/');
+    });
+
     it('adds an /:id if only one identifier is present', function () {
       var url = parse.url( {resource:'users', identifiers:[123]}, cfg );
       expect( url ).to.be( 'http://local/users/123' );
