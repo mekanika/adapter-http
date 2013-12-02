@@ -42,6 +42,16 @@ describe('Adapter', function () {
       expect( rest.config.headers ).to.be.empty();
     });
 
+    it('.query contains url query configuration', function () {
+      var cfg = rest.config.query;
+      expect( cfg ).to.have.keys( 'key', 'pattern', 'map', 'opmap' );
+
+      expect( cfg.key ).to.be( 'q' );
+      expect( cfg.pattern ).to.be( '' );
+      expect( cfg.map ).to.not.be.empty();
+      expect( cfg.opmap ).to.not.be.empty();
+    });
+
   });
 
 
