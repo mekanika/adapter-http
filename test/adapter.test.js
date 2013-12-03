@@ -37,8 +37,8 @@ describe('Adapter', function () {
       expect( rest.config.contentType ).to.be( 'application/json' );
     });
 
-    it('.withCredentials defaults to `true`', function () {
-      expect( rest.config.withCredentials ).to.be( true );
+    it('.withCredentials defaults to `false`', function () {
+      expect( rest.config.withCredentials ).to.be( false );
     });
 
     it('custom .headers default to empty object', function () {
