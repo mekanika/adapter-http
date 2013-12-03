@@ -1,6 +1,6 @@
 {
   "name": "mekanika-adapter-rest",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mekanika REST adapter",
   "main": "lib/adapter-rest.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "url": "https://github.com/mekanika/adapter-rest/issues"
   },
   "files": [
-    "rest.min.js",
+    "adapter-rest.min.js",
     "Makefile",
     "Readme.md",
     "History.md",

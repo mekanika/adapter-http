@@ -1,4 +1,4 @@
-0.1.0 - 3 December 2013
+0.1.1 - 3 December 2013
 =====
 
-- Initial release
+- Initial release (with adapter-rest.min.js)
