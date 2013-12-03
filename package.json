@@ -1,6 +1,6 @@
 {
   "name": "mekanika-adapter-rest",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Mekanika REST adapter",
   "main": "lib/adapter-rest.js",
   "scripts": {
@@ -14,6 +14,15 @@
   "bugs": {
     "url": "https://github.com/mekanika/adapter-rest/issues"
   },
+  "files": [
+    "rest.min.js",
+    "Makefile",
+    "Readme.md",
+    "History.md",
+    "package.json",
+    "lib/",
+    "test/"
+  ],
   "dependencies": {
     "mekanika-adapter": "*",
     "superagent": "0.15.7"
