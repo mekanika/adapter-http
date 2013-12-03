@@ -8,6 +8,8 @@ install:
 
 build: lint
 	@NODE_ENV=test mocha --reporter dot $(TESTFILES)
+	@browserify lib/adapter-rest.js -o adapter-rest.min.js -s rest
+	@uglifyjs adapter-rest.min.js -m -c -o adapter-rest.min.js
 
 test:
 	@NODE_ENV=test ./node_modules/.bin/mocha \
