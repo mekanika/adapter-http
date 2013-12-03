@@ -13,7 +13,7 @@ var allowCrossDomain = function(req, res, next) {
       'Content-Type'
     // Required for CORS preflight
     , 'X-Requested-With'
-  ]
+  ];
 
   var methods = [
       'GET'
@@ -23,17 +23,17 @@ var allowCrossDomain = function(req, res, next) {
     // Options is required for CORS preflight
     // https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
     , 'OPTIONS'
-  ]
+  ];
 
-  res.header( 'Access-Control-Allow-Origin', '*' )
-  res.header( 'Access-Control-Allow-Credentials', 'true' )
-  res.header( 'Access-Control-Allow-Methods', methods.join(',') )
-  res.header( 'Access-Control-Allow-Headers', headers.join(',') )
+  res.header( 'Access-Control-Allow-Origin', '*' );
+  res.header( 'Access-Control-Allow-Credentials', 'true' );
+  res.header( 'Access-Control-Allow-Methods', methods.join(',') );
+  res.header( 'Access-Control-Allow-Headers', headers.join(',') );
 
-  if (req.method === 'OPTIONS') res.json( 200 )
-  else next()
+  if (req.method === 'OPTIONS') res.json( 200 );
+  else next();
 
-}
+};
 
 app.use( allowCrossDomain );
 
