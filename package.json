@@ -15,14 +15,13 @@
     "url": "https://github.com/mekanika/adapter-rest/issues"
   },
   "dependencies": {
-    "mekanika-adapter": "*",
-    "superagent": "0.15.7"
+    "superagent": "^0.21.0"
   },
   "devDependencies": {
-    "mocha": "~1.15.0",
-    "expect.js": "~0.2.0",
-    "express": "~3.4.6",
-    "jshint": "~2.3.0",
-    "clone-component": "~0.1.0"
+    "mocha": "^2.1.0",
+    "expect.js": "^0.3.1",
+    "express": "^4.11.2",
+    "jshint": "^2.6.0",
+    "clone-component": "^0.2.2"
   }
 }
