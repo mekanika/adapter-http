@@ -101,6 +101,13 @@ describe('Adapter', function () {
       expect( a._data.name ).to.equal( ':)' );
     });
 
+    it('defaults to POST if cfg.parse = false', function () {
+      rest.config.parse = false;
+      var a = rest.exec( {do:'create'}, _fn );
+      expect( a.method ).to.equal('POST');
+      rest.config.parse = true; // Reset config
+    });
+
   });
 
 
