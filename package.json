@@ -14,15 +14,6 @@
   "bugs": {
     "url": "https://github.com/mekanika/adapter-rest/issues"
   },
-  "files": [
-    "adapter-rest.min.js",
-    "Makefile",
-    "Readme.md",
-    "History.md",
-    "package.json",
-    "lib/",
-    "test/"
-  ],
   "dependencies": {
     "mekanika-adapter": "*",
     "superagent": "0.15.7"
