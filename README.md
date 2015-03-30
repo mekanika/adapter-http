@@ -1,9 +1,80 @@
 
-# adapter-rest
+# adapter-http
 
 
-Query envelope to HTTP adapter 
+[Query envelope](https://github.com/mekanika/qe) to HTTP adapter 
 
+
+## Install
+
+    npm install mekanika-adapter-http
+
+CommonJS:
+
+```js
+var http = require('mekanika-adapter-http');
+```
+
+Browser (exposes as `HttpAdapter` globals):
+
+```html
+<script src="dist/adapter-http.min.js"></script>
+```
+
+
+## Usage
+
+The HTTP adapter exposes an `.exec( qe, callback )` method and a `.config` object property.
+
+```js
+http.exec( {do:'find', on:'users'}, function (err, res) {
+  if (err) throw new Error(err);
+  console.log( res );
+});
+```
+
+### .exec( qe, cb )
+
+The adapter can be run calling `exec` and passing it:
+
+- **qe** - a valid Mekanika [Qe](https://github.com/mekanika/qe)
+- **cb** - a callback that accepts `(err, res)` parameters
+
+The query envelope MUST sepcify an action: `{do:'find'}` which is used to run a superagent call (eg. `post()`, `get()` etc).
+
+Exec returns the `superagent` instance, and passes its results to the callback:
+
+#### err - Error handling
+A superagent error object. Information on error handling is available via [superagent error docs](https://visionmedia.github.io/superagent/#error-handling).
+
+#### res - Response handling
+Superagent [response object](https://visionmedia.github.io/superagent/#response-properties).
+
+Some notable `res` properties:
+
+- **res.text** - unparsed response body string
+- **res.body** - parsed according to `Content-Type` (may be empty)
+- **res.header** - object of parsed header fields
+- **res.type** - Content-Type void of the charset
+- **res.charset** - content type charset if provided
+- **res.error** - provided on `4xx` and `5xx` responses
+- **res.status** - response status flags
+
+### Config
+Config defaults as follows, each of which can be overridden before calling `.exec()`:
+
+```js
+exports.config = {
+    protocol: 'http'
+  , host: 'localhost'
+  , port: 80
+  , contentType: 'application/json'
+  , withCredentials: false
+  , headers: {}
+}
+```
+
+Config affects how superagent creates the call and where it points to.
 
 
 ## HTTP request and URL construction
@@ -32,9 +103,25 @@ Multiple ids are separated by commas `{on:'users', ids:['12345','14421']}`
     http://localhost/users/12345,14421
 
 
+## Tests
+
+Ensure you have installed the development dependencies:
+
+    npm install
+
+To run the tests:
+
+    npm test
+
+### Coverage
+
+Coverage reports are generated with [istanbul](https://github.com/gotwarlost/istanbul) (`npm install -g istanbul`):
+
+    npm run coverage
 
 
-Notes to me:
+## License
 
-GET (find) + DELETE (remove) must parse 'match' conditions as URL queries /resource/?query
-POST can plug the whole Qe in the HTTP body
+Copyright 2013-2015 Mekanika
+
+Released under the **MIT License** ([MIT](http://opensource.org/licenses/MIT))
