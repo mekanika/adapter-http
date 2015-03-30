@@ -1,23 +1,23 @@
 {
-  "name": "mekanika-adapter-rest",
+  "name": "mekanika-adapter-http",
   "version": "0.1.1",
-  "description": "Mekanika REST adapter",
-  "main": "lib/adapter-rest.js",
+  "description": "Mekanika HTTP adapter",
+  "main": "index.js",
   "scripts": {
-    "browserify": "browserify index.js -o dist/adapter-rest.js -s RestAdapter",
+    "browserify": "browserify index.js -o dist/adapter-http.js -s HttpAdapter",
     "build": "npm run browserify && npm run compress",
-    "compress": "uglifyjs dist/adapter-rest.js -cm -o dist/adapter-rest.min.js",
+    "compress": "uglifyjs dist/adapter-http.js -cm -o dist/adapter-http.min.js",
     "coverage": "istanbul cover _mocha",
     "lint": "jshint --config .jshintrc index.js lib/*.js test/*.js",
     "test": "mocha -R spec test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mekanika/adapter-rest.git"
+    "url": "https://github.com/mekanika/adapter-http.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mekanika/adapter-rest/issues"
+    "url": "https://github.com/mekanika/adapter-http/issues"
   },
   "dependencies": {
     "superagent": "^0.21.0"
