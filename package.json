@@ -4,9 +4,9 @@
   "description": "Mekanika REST adapter",
   "main": "lib/adapter-rest.js",
   "scripts": {
-    "browserify": "browserify index.js -o adapter-rest.min.js -s RestAdapter",
+    "browserify": "browserify index.js -o dist/adapter-rest.js -s RestAdapter",
     "build": "npm run browserify && npm run compress",
-    "compress": "uglifyjs adapter-rest.min.js -cm -o adapter-rest.min.js",
+    "compress": "uglifyjs dist/adapter-rest.js -cm -o dist/adapter-rest.min.js",
     "coverage": "istanbul cover _mocha",
     "lint": "jshint --config .jshintrc index.js lib/*.js test/*.js",
     "test": "mocha -R spec test"
