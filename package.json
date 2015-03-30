@@ -20,14 +20,14 @@
     "url": "https://github.com/mekanika/adapter-http/issues"
   },
   "dependencies": {
-    "superagent": "^0.21.0"
+    "superagent": "^1.1.0"
   },
   "devDependencies": {
-    "chai": "^1.10.0",
+    "chai": "^2.2.0",
     "clone-component": "^0.2.2",
     "expect.js": "^0.3.1",
-    "express": "^4.11.2",
-    "jshint": "^2.6.0",
-    "mocha": "^2.1.0"
+    "express": "^4.12.3",
+    "jshint": "^2.6.3",
+    "mocha": "^2.2.1"
   }
 }
