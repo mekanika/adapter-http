@@ -70,6 +70,8 @@ exports.exec = function ( qe, cb ) {
   if (cfg.withCredentials && agent.withCredentials)
     agent = agent.withCredentials();
 
-  return agent.end( function(err, res) { cb( err, res.body ); });
+  return agent.end( function(err, res) {
+    cb( err, res && res.body ? res.body : null );
+  });
 
 };
