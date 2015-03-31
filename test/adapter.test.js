@@ -43,7 +43,7 @@ describe('Adapter', function () {
 
     it('custom .headers default to empty object', function () {
       expect( rest.config.headers ).to.be.an.instanceof( Object );
-      expect( rest.config.headers ).to.be.empty();
+      expect( rest.config.headers ).to.be.empty;
     });
 
     it.skip('.query contains url query configuration', function () {
