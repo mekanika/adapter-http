@@ -15,6 +15,13 @@ module.exports = exports = {};
 
 
 /**
+ * Expose the underlying driver
+*/
+
+exports.driver = request;
+
+
+/**
  * Default configuration
  */
 

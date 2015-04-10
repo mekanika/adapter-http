@@ -18,6 +18,10 @@ describe('Adapter', function () {
     expect( rest.exec.length ).to.be.gt( 1 );
   });
 
+  it('exposes agent as .driver', function () {
+    expect( rest.driver ).to.be.an.instanceof( Function );
+  });
+
 
   describe('.config', function () {
 
