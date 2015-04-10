@@ -25,13 +25,6 @@ describe('Parsers', function () {
       expect( parse.url( {on:'users'}, cfg) ).to.equal('http://local/users');
     });
 
-    it('does not parse endpoint (resource) if cfg.parse=false', function () {
-      cfg.parse = false;
-      expect( parse.url({on:'users'}, cfg) ).to.equal('http://local');
-      // Reset config change
-      cfg.parse = true;
-    });
-
     it('omits resource if not defined', function () {
       expect( parse.url( {}, cfg ) ).to.equal('http://local');
     });
