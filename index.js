@@ -69,9 +69,7 @@ exports.exec = function ( qe, cb ) {
 
   // Setup initial superagent qeuest
   var agent = request[ method ]( url )
-    .set( 'Content-Type', cfg.contentType )
     .set( cfg.headers )
-    // .query( parse.urlQuery( qe, cfg.query ) )
     .send( qe );
 
   // Add credentials if in browser state
