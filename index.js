@@ -3,15 +3,16 @@
  * Dependencies
  */
 
-var parse = require('./lib/parsers');
-var request = require('superagent');
+var emitter = require('component-emitter')
+  , parse = require('./lib/parsers')
+  , request = require('superagent');
 
 
 /**
  * Export adapter
  */
 
-module.exports = exports = {};
+module.exports = exports = emitter({});
 
 
 /**
@@ -78,6 +79,7 @@ exports.exec = function ( qe, cb ) {
     agent = agent.withCredentials();
 
   return agent.end( function(err, res) {
+    exports.emit( res.status, res.body || null );
     cb( err, res && res.body ? res.body : null );
   });
 
