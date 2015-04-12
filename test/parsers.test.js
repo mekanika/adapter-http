@@ -36,6 +36,17 @@ describe('Parsers', function () {
       cfg.port = 80;
     });
 
+    it('only places endpoint if cfg.parse is true', function () {
+      cfg.parse = false;
+      cfg.prefix = 'hello';
+      expect( parse.url({do:'find', on:'users'}, cfg) )
+        .to.equal('http://local/hello');
+      cfg.prefix = '';
+      expect( parse.url({do:'find', on:'users'}, cfg) )
+        .to.equal('http://local');
+      cfg.parse = true;
+    });
+
     it('adds an /:id if only one identifier is present', function () {
       var url = parse.url( {on:'users', ids:[123]}, cfg );
       expect( url ).to.equal( 'http://local/users/123' );
