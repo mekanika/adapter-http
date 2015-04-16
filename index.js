@@ -61,7 +61,6 @@ var methods = {
  */
 
 exports.exec = function ( qe, cb ) {
-
   var cfg = exports.config;
 
   var url = parse.url( qe, cfg )
@@ -77,7 +76,7 @@ exports.exec = function ( qe, cb ) {
     agent = agent.withCredentials();
 
   return agent.end( function(err, res) {
-    exports.emit( res.status, res.body || null );
+    if (res) exports.emit( res.status, res.body || null );
     cb( err, res && res.body ? res.body : null );
   });
 
