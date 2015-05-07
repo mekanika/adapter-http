@@ -1,3 +1,25 @@
+0.3.0 - 7 May 2015
+=====
+
+Added:
+
+- Expose request agent on .driver on module
+
+Changed:
+
+- Only emit event if `res` is present on return
+- Fix parser to only parse endpoint if cfg.parse
+- Adapter is now an event emitter
+- Exclude URL generator from ‘parse’ config
+- Adapter results are `res` NOT superagent object
+
+Internal:
+
+- tests: Fix old empty() style bdd expect
+- Ensure adapter results pass obj or null
+
+
+
 0.2.0 - 30 March 2015
 =====
 
